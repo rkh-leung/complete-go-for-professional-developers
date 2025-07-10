@@ -35,4 +35,28 @@ func main() {
 	var defaultString string
 	var defaultBool bool
 	fmt.Printf("%d, %f, %s, %t\n", defaultInt, defaultFloat, defaultString, defaultBool)
+
+	// const can be used but variables can't, an issue of memory allocation
+	const pi = 3.14
+
+	const (
+		Monday    = 1
+		Tuesday   = 2
+		Wednesday = 3
+	)
+
+	const typedNumber int = 25
+	const untypedNumber = 25
+
+	fmt.Printf("typed == untyped: %t\n", typedNumber == untypedNumber)
+
+	// declare const using iota
+	const (
+		Jan = iota + 1
+		Feb
+		Mar
+		Apr
+	)
+
+	fmt.Printf("Jan to Apr %d, %d, %d, %d\n", Jan, Feb, Mar, Apr)
 }
