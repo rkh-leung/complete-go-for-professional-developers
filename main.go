@@ -93,6 +93,25 @@ func main() {
 	default:
 		fmt.Println("its the weekend")
 	}
+
+	// loops
+	for i := 0; i < 5; i++ {
+		fmt.Println("this is i", i)
+	}
+
+	counter := 0
+	for counter < 3 { // equivalent to while loop
+		counter++
+		fmt.Println("this is counter", counter)
+	}
+
+	iterations := 0
+	for { // infinite loop, require break
+		if iterations > 3 {
+			break
+		}
+		iterations++
+	}
 }
 
 // Add (capitalized means it is exportable)
