@@ -4,6 +4,11 @@ import (
 	"fmt"
 )
 
+type Person struct { // custom data type
+	Name string
+	Age  int
+}
+
 // package main can import but can't export anything
 // go build -o output_file build_file
 func main() {
@@ -163,10 +168,6 @@ func main() {
 	fmt.Printf("This is new map %v\n", capitalCities)
 
 	// Struct - data type that can hold data and pass around
-	type Person struct { // custom data type
-		Name string
-		Age  int
-	}
 	person := Person{Name: "John", Age: 20}
 	fmt.Printf("This is person struct: %v\n", person)
 	fmt.Printf("This is person struct with fields: %+v\n", person)
@@ -199,6 +200,34 @@ func main() {
 		Phone: "12345", // doesn't have to have all fields in Contact
 	}
 	fmt.Println("this is nested contact", contact)
+
+	// Pointers & Struct methods
+	fmt.Println("name before: ", person.Name) // John
+	modifyPersonName(person)                  // pass by copied value
+	fmt.Println("name after: ", person.Name)  // No change
+	new_name := modifyPersonName(person)
+	fmt.Println("name after: ", new_name)
+
+	x := 20
+	ptr := &x // set ptr to the reference of x
+	fmt.Printf("value of x: %d and address of x %p\n", x, ptr)
+	*ptr = 30 // dereference ptr to get the value and set to 30
+	fmt.Printf("value of new x: %d and address of x %p\n", x, ptr)
+
+	person.modifyPersonNameMethod("new method name")
+	fmt.Println("name after method: ", person.Name) // name modified
+}
+
+func modifyPersonName(person Person) string {
+	person.Name = "K" // modifying within scope
+	fmt.Println("inside scope new name: ", person.Name)
+	return person.Name // returning modified value
+}
+
+// func (method receiver) nameOfMethod()
+func (person *Person) modifyPersonNameMethod(name string) {
+	person.Name = name
+	fmt.Println("inside scope new name: ", person.Name)
 }
 
 // Add (capitalized means it is exportable)
