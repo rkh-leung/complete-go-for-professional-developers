@@ -69,6 +69,30 @@ func main() {
 	fmt.Printf("Here's the result of sum and product: %d, %d\n", sum, product)
 	_, new_res := multiple_return_add_and_mul(5, 2)
 	fmt.Println(new_res)
+
+	// conditional statements
+
+	age := 30
+	if age >= 18 {
+		fmt.Println("You're an adult")
+	} else if age >= 13 {
+		fmt.Println("you are a teenager")
+	} else {
+		fmt.Println("you are a child")
+	}
+
+	day := "Tuesday"
+
+	switch day {
+	case "Monday":
+		fmt.Println("Start of the week")
+	case "Tuesday", "Wednesday", "Thursday":
+		fmt.Println("Midweek")
+	case "Friday":
+		fmt.Println("TGIF")
+	default:
+		fmt.Println("its the weekend")
+	}
 }
 
 // Add (capitalized means it is exportable)
