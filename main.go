@@ -144,6 +144,24 @@ func main() {
 	for index, value := range numbers {
 		fmt.Printf("index %d and value %d\n", index, value)
 	}
+
+	// Maps (key value store, hash map)
+	capitalCities := map[string]string{
+		"USA":   "Washington D.C.",
+		"India": "New Delhi",
+		"UK":    "London",
+	}
+	fmt.Println(capitalCities["UK"])
+
+	capital, exists := capitalCities["Germany"] // exists returns boolean
+	if exists {
+		fmt.Println("This is the capital", capital)
+	} else {
+		fmt.Println("Does not exist", exists) // prints false
+	}
+	delete(capitalCities, "UK")
+	fmt.Printf("This is new map %v\n", capitalCities)
+
 }
 
 // Add (capitalized means it is exportable)
