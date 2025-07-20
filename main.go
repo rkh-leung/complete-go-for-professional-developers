@@ -112,6 +112,38 @@ func main() {
 		}
 		iterations++
 	}
+
+	// Arrays and slices
+	numbers := [5]int{10, 20, 30, 40, 50} // can only have one type
+	fmt.Printf("This is out array %v\n", numbers)
+	fmt.Printf("This is the last value %v\n", numbers[len(numbers)-1])
+	numbersAtInit := [...]int{20, 20, 20} // set array capacity based on initializtion
+	fmt.Printf("This is out array %v\n", numbersAtInit)
+	fmt.Printf("This is the last value %v\n", numbersAtInit[len(numbersAtInit)-1])
+	matrix := [2][3]int{ //[row][column]
+		{1, 2, 3},
+		{4, 5, 6},
+	}
+	fmt.Println("this is matrix", matrix)
+
+	// slice is a dynamic array or a portion of an array
+	allNumbers := numbers[:] // slice copy of numbers array
+	fmt.Println(allNumbers)
+	firstThree := numbers[0:3]
+	fmt.Println(firstThree)
+
+	fruits := []string{"apple", "banana", "strawberry"}
+	fmt.Printf("these are my fruits %v\n", fruits)
+	fruits = append(fruits, "kiwi")
+	fmt.Printf("these are my fruits with kiwi %v\n", fruits)
+
+	moreFruits := []string{"blueberries", "durian"}
+	fruits = append(fruits, moreFruits...)
+	fmt.Printf("these are my fruits with more fruits %v\n", fruits)
+
+	for index, value := range numbers {
+		fmt.Printf("index %d and value %d\n", index, value)
+	}
 }
 
 // Add (capitalized means it is exportable)
