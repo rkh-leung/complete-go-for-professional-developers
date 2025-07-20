@@ -162,6 +162,43 @@ func main() {
 	delete(capitalCities, "UK")
 	fmt.Printf("This is new map %v\n", capitalCities)
 
+	// Struct - data type that can hold data and pass around
+	type Person struct { // custom data type
+		Name string
+		Age  int
+	}
+	person := Person{Name: "John", Age: 20}
+	fmt.Printf("This is person struct: %v\n", person)
+	fmt.Printf("This is person struct with fields: %+v\n", person)
+
+	employee := struct { // {type}{data}
+		name string
+		id   int
+	}{
+		name: "alice",
+		id:   123,
+	}
+	fmt.Println("this is employee", employee)
+
+	type Address struct {
+		Street string
+		City   string
+	}
+	type Contact struct {
+		Name    string
+		Address Address
+		Phone   string
+	}
+
+	contact := Contact{
+		Name: "Marc",
+		Address: Address{
+			Street: "123 Main street",
+			City:   "Anytown",
+		},
+		Phone: "12345", // doesn't have to have all fields in Contact
+	}
+	fmt.Println("this is nested contact", contact)
 }
 
 // Add (capitalized means it is exportable)
