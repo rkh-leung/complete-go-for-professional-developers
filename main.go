@@ -2,6 +2,7 @@ package main
 
 import (
 	"complete-go-for-professional-developers/internal/app"
+	"complete-go-for-professional-developers/internal/routes"
 	"flag"
 	"fmt"
 	"net/http"
@@ -18,9 +19,10 @@ func main() {
 		panic(err)
 	}
 
-	http.HandleFunc("/health", HealthCheck)
+	r := routes.SetupRoutes(app)
 	server := &http.Server{ // server now stores a pointer to http.Server struct
 		Addr:         fmt.Sprintf(":%d", port),
+		Handler:      r,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
