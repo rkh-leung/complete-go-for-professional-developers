@@ -22,6 +22,9 @@ func (wh *WorkoutHandler) HandleGetWorkoutByID(w http.ResponseWriter, r *http.Re
 		return // critical, if it doesn't return it continues
 	}
 
+	// base 10, 64 bit int, the return will still be a number due to ParseInt
+	// but it affects what base number goes into the path parameter
+	// e.g. /workouts/101 => 5 for base 2
 	workoutID, err := strconv.ParseInt(paramsWorkoutID, 10, 64)
 	if err != nil {
 		http.NotFound(w, r)

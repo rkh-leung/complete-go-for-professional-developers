@@ -22,11 +22,12 @@ func NewApplication() (*Application, error) {
 	// Stores go here
 
 	// Handlers go here
-	workoutHanlder := api.NewWorkoutHandler()
+	workoutHandler := api.NewWorkoutHandler() // of type *api.WorkoutHandler
+	fmt.Printf("The type of workoutHandler is: %T\n", workoutHandler)
 
 	app := &Application{
 		Logger:         logger,
-		WorkoutHanlder: workoutHanlder,
+		WorkoutHanlder: workoutHandler,
 	}
 
 	return app, nil // nil is valid error type

@@ -19,8 +19,8 @@ func main() {
 		panic(err)
 	}
 
-	r := routes.SetupRoutes(app)
-	server := &http.Server{ // server now stores a pointer to http.Server struct
+	r := routes.SetupRoutes(app) // establishing routes
+	server := &http.Server{      // server now stores a pointer to http.Server struct
 		Addr:         fmt.Sprintf(":%d", port),
 		Handler:      r,
 		IdleTimeout:  time.Minute,
