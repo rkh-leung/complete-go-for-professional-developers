@@ -1,6 +1,7 @@
 package app
 
 import (
+	"complete-go-for-professional-developers/internal/api"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,15 +11,22 @@ import (
 // app housing data for application and whether it needs a struct
 
 type Application struct {
-	Logger *log.Logger
+	Logger         *log.Logger
+	WorkoutHanlder *api.WorkoutHandler
 }
 
 func NewApplication() (*Application, error) {
 	// using logger instead of print debugging
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
+	// Stores go here
+
+	// Handlers go here
+	workoutHanlder := api.NewWorkoutHandler()
+
 	app := &Application{
-		Logger: logger,
+		Logger:         logger,
+		WorkoutHanlder: workoutHanlder,
 	}
 
 	return app, nil // nil is valid error type

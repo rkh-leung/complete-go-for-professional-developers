@@ -27,7 +27,7 @@ func main() {
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
-	app.Logger.Printf("The app is running on port %d\n!", port)
+	app.Logger.Printf("The app is running on port %d!\n", port)
 
 	err = server.ListenAndServe()
 	if err != nil {
