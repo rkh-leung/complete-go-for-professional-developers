@@ -2,6 +2,8 @@ package app
 
 import (
 	"complete-go-for-professional-developers/internal/api"
+	"complete-go-for-professional-developers/internal/store"
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,9 +15,15 @@ import (
 type Application struct {
 	Logger         *log.Logger
 	WorkoutHanlder *api.WorkoutHandler
+	DB             *sql.DB
 }
 
 func NewApplication() (*Application, error) {
+	pgDB, err := store.Open()
+	if err != nil {
+		return nil, err
+	}
+
 	// using logger instead of print debugging
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
@@ -23,11 +31,11 @@ func NewApplication() (*Application, error) {
 
 	// Handlers go here
 	workoutHandler := api.NewWorkoutHandler() // of type *api.WorkoutHandler
-	fmt.Printf("The type of workoutHandler is: %T\n", workoutHandler)
 
 	app := &Application{
 		Logger:         logger,
 		WorkoutHanlder: workoutHandler,
+		DB:             pgDB,
 	}
 
 	return app, nil // nil is valid error type
