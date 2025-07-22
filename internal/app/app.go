@@ -3,6 +3,7 @@ package app
 import (
 	"complete-go-for-professional-developers/internal/api"
 	"complete-go-for-professional-developers/internal/store"
+	"complete-go-for-professional-developers/migrations"
 	"database/sql"
 	"fmt"
 	"log"
@@ -24,10 +25,14 @@ func NewApplication() (*Application, error) {
 		return nil, err
 	}
 
+	// Stores go here
+	err = store.MigrateFS(pgDB, migrations.FS, ".") // run at base of dir
+	if err != nil {
+		panic(err)
+	}
+
 	// using logger instead of print debugging
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
-
-	// Stores go here
 
 	// Handlers go here
 	workoutHandler := api.NewWorkoutHandler() // of type *api.WorkoutHandler
