@@ -138,7 +138,7 @@ func (pg *PostgresWorkoutStore) UpdateWorkout(workout *Workout) error {
   SET title = $1, description = $2, duration_minutes = $3, calories_burned = $4
 	WHERE id = $5
 	`
-	result, err := tx.Exec(query, workout.ID, workout.Title, workout.Description, workout.DurationMinutes, workout.CaloriesBurned)
+	result, err := tx.Exec(query, workout.Title, workout.Description, workout.DurationMinutes, workout.CaloriesBurned, workout.ID)
 	if err != nil {
 		return err
 	}
@@ -164,7 +164,6 @@ func (pg *PostgresWorkoutStore) UpdateWorkout(workout *Workout) error {
 		_, err := tx.Exec(
 			query,
 			workout.ID,
-			entry.ID,
 			entry.ExerciseName,
 			entry.Sets,
 			entry.Reps,
