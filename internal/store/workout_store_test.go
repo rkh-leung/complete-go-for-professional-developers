@@ -21,7 +21,7 @@ func setupTestDB(t *testing.T) *sql.DB {
 		t.Fatalf("migrating test db error: %v", err)
 	}
 
-	_, err = db.Exec(`TRUNCATE workouts, workouts_entries CASCADE`)
+	_, err = db.Exec(`TRUNCATE workouts, workout_entries CASCADE`)
 	if err != nil {
 		t.Fatalf("truncating tables %v", err)
 	}
@@ -79,9 +79,9 @@ func TestCreateWorkout(t *testing.T) {
 						Sets:            4,
 						Reps:            IntPtr(5),
 						DurationSeconds: IntPtr(20),
-						Weight:          FloatPtr(120.3),
+						Weight:          FloatPtr(120.0),
 						Notes:           "full depth",
-						OrderIndex:      1,
+						OrderIndex:      2,
 					},
 				},
 			},
